@@ -9,7 +9,10 @@
 package browserAgent;
 
 import com.microsoft.playwright.*;
-import com.sun.tools.javac.util.List;
+
+import java.util.Arrays;
+import java.util.List;
+//import com.sun.tools.javac.util.List;
 
 public class BrowserAgent {
     private static Playwright playwright;
@@ -23,8 +26,8 @@ public class BrowserAgent {
         }
 
         if (browser == null) {
-            browser = playwright.chromium().launch(new BrowserType.LaunchOptions()
-                    .setArgs(List.of("--disable-blink-features=AutomationControlled"))); // Stealth Mode
+            //List<String> args = Arrays.asList("--disable-blink-features=AutomationControlled", "--headed=true");
+            browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(false));// Stealth Mode
         }
 
         browserContext = browser.newContext();
